@@ -49,5 +49,8 @@ au! BufNewFile,BufRead *.multicycle*         setfiletype multicycle
 " Multicycle configuration
 au! BufNewFile,BufRead *.v,*.vs*,*.vh,*.def,*.sv,*.svh,*.vg            setfiletype verilog_systemverilog
 
+" Multicycle configuration
+au! BufNewFile,BufRead *.gcov                setfiletype gcov
+
 aug END
 

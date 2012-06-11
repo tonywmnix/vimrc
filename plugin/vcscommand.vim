@@ -1014,6 +1014,252 @@ function! s:VCSVimDiff(...)
 	endtry
 endfunction
 
+" Function: s:VCSVimDiffCVS(...) {{{2
+function! s:VCSVimDiffCVS(...)
+	try
+		call setbufvar('%', 'VCSCommandVCSType', 'CVS')
+		let vcsType = VCSCommandGetVCSType(bufnr('%'))
+        if !has_key(s:plugins, vcsType)
+			throw 'Unknown VCS type:  ' . vcsType
+		endif
+		let originalBuffer = VCSCommandGetOriginalBuffer(bufnr('%'))
+		let s:isEditFileRunning = s:isEditFileRunning + 1
+		try
+			" If there's already a VimDiff'ed window, restore it.
+			" There may only be one VCSVimDiff original window at a time.
+
+			if exists('t:vcsCommandVimDiffSourceBuffer') && t:vcsCommandVimDiffSourceBuffer != originalBuffer
+				" Clear the existing vimdiff setup by removing the result buffers.
+				call s:WipeoutCommandBuffers(t:vcsCommandVimDiffSourceBuffer, 'vimdiff')
+			endif
+
+			let orientation = &diffopt =~ 'horizontal' ? 'horizontal' : 'vertical'
+			let orientation = VCSCommandGetOption('VCSCommandSplit', orientation)
+			let orientation = VCSCommandGetOption('VCSCommandDiffSplit', orientation)
+
+			" Split and diff
+			if(a:0 == 2)
+				" Reset the vimdiff system, as 2 explicit versions were provided.
+				if exists('t:vcsCommandVimDiffSourceBuffer')
+					call s:WipeoutCommandBuffers(t:vcsCommandVimDiffSourceBuffer, 'vimdiff')
+				endif
+				let resultBuffer = s:VCSReview(a:1)
+				if resultBuffer < 0
+					echomsg 'Can''t open revision ' . a:1
+					return resultBuffer
+				endif
+				let b:VCSCommandCommand = 'vimdiff'
+				diffthis
+				let t:vcsCommandVimDiffScratchList = [resultBuffer]
+				" If no split method is defined, cheat, and set it to vertical.
+				try
+					call s:OverrideOption('VCSCommandSplit', orientation)
+					let resultBuffer = s:VCSReview(a:2)
+				finally
+					call s:OverrideOption('VCSCommandSplit')
+				endtry
+				if resultBuffer < 0
+					echomsg 'Can''t open revision ' . a:1
+					return resultBuffer
+				endif
+				let b:VCSCommandCommand = 'vimdiff'
+				diffthis
+				let t:vcsCommandVimDiffScratchList += [resultBuffer]
+			else
+				" Add new buffer
+				call s:OverrideOption('VCSCommandEdit', 'split')
+				try
+					" Force splitting behavior, otherwise why use vimdiff?
+					call s:OverrideOption('VCSCommandSplit', orientation)
+					try
+						if(a:0 == 0)
+							let resultBuffer = s:VCSReview()
+						else
+							let resultBuffer = s:VCSReview(a:1)
+						endif
+					finally
+						call s:OverrideOption('VCSCommandSplit')
+					endtry
+				finally
+					call s:OverrideOption('VCSCommandEdit')
+				endtry
+				if resultBuffer < 0
+					echomsg 'Can''t open current revision'
+					return resultBuffer
+				endif
+				let b:VCSCommandCommand = 'vimdiff'
+				diffthis
+
+				if !exists('t:vcsCommandVimDiffSourceBuffer')
+					" New instance of vimdiff.
+					let t:vcsCommandVimDiffScratchList = [resultBuffer]
+
+					" This could have been invoked on a VCS result buffer, not the
+					" original buffer.
+					wincmd W
+					execute 'buffer' originalBuffer
+					" Store info for later original buffer restore
+					let t:vcsCommandVimDiffRestoreCmd =
+								\    'call setbufvar('.originalBuffer.', ''&diff'', '.getbufvar(originalBuffer, '&diff').')'
+								\ . '|call setbufvar('.originalBuffer.', ''&foldcolumn'', '.getbufvar(originalBuffer, '&foldcolumn').')'
+								\ . '|call setbufvar('.originalBuffer.', ''&foldenable'', '.getbufvar(originalBuffer, '&foldenable').')'
+								\ . '|call setbufvar('.originalBuffer.', ''&foldmethod'', '''.getbufvar(originalBuffer, '&foldmethod').''')'
+								\ . '|call setbufvar('.originalBuffer.', ''&foldlevel'', '''.getbufvar(originalBuffer, '&foldlevel').''')'
+								\ . '|call setbufvar('.originalBuffer.', ''&scrollbind'', '.getbufvar(originalBuffer, '&scrollbind').')'
+								\ . '|call setbufvar('.originalBuffer.', ''&wrap'', '.getbufvar(originalBuffer, '&wrap').')'
+								\ . '|if &foldmethod==''manual''|execute ''normal zE''|endif'
+					diffthis
+					wincmd w
+				else
+					" Adding a window to an existing vimdiff
+					let t:vcsCommandVimDiffScratchList += [resultBuffer]
+				endif
+			endif
+
+			let t:vcsCommandVimDiffSourceBuffer = originalBuffer
+
+			" Avoid executing the modeline in the current buffer after the autocommand.
+
+			let currentBuffer = bufnr('%')
+			let saveModeline = getbufvar(currentBuffer, '&modeline')
+			try
+				call setbufvar(currentBuffer, '&modeline', 0)
+				silent do VCSCommand User VCSVimDiffFinish
+			finally
+				call setbufvar(currentBuffer, '&modeline', saveModeline)
+			endtry
+			return resultBuffer
+		finally
+			let s:isEditFileRunning = s:isEditFileRunning - 1
+		endtry
+	catch
+		call s:ReportError(v:exception)
+		return -1
+	endtry
+endfunction
+" Function: s:VCSVimDiffGit(...) {{{2
+function! s:VCSVimDiffGit(...)
+	try
+		call setbufvar('%', 'VCSCommandVCSType', 'git')
+		let vcsType = VCSCommandGetVCSType(bufnr('%'))
+        if !has_key(s:plugins, vcsType)
+			throw 'Unknown VCS type:  ' . vcsType
+		endif
+		let originalBuffer = VCSCommandGetOriginalBuffer(bufnr('%'))
+		let s:isEditFileRunning = s:isEditFileRunning + 1
+		try
+			" If there's already a VimDiff'ed window, restore it.
+			" There may only be one VCSVimDiff original window at a time.
+
+			if exists('t:vcsCommandVimDiffSourceBuffer') && t:vcsCommandVimDiffSourceBuffer != originalBuffer
+				" Clear the existing vimdiff setup by removing the result buffers.
+				call s:WipeoutCommandBuffers(t:vcsCommandVimDiffSourceBuffer, 'vimdiff')
+			endif
+
+			let orientation = &diffopt =~ 'horizontal' ? 'horizontal' : 'vertical'
+			let orientation = VCSCommandGetOption('VCSCommandSplit', orientation)
+			let orientation = VCSCommandGetOption('VCSCommandDiffSplit', orientation)
+
+			" Split and diff
+			if(a:0 == 2)
+				" Reset the vimdiff system, as 2 explicit versions were provided.
+				if exists('t:vcsCommandVimDiffSourceBuffer')
+					call s:WipeoutCommandBuffers(t:vcsCommandVimDiffSourceBuffer, 'vimdiff')
+				endif
+				let resultBuffer = s:VCSReview(a:1)
+				if resultBuffer < 0
+					echomsg 'Can''t open revision ' . a:1
+					return resultBuffer
+				endif
+				let b:VCSCommandCommand = 'vimdiff'
+				diffthis
+				let t:vcsCommandVimDiffScratchList = [resultBuffer]
+				" If no split method is defined, cheat, and set it to vertical.
+				try
+					call s:OverrideOption('VCSCommandSplit', orientation)
+					let resultBuffer = s:VCSReview(a:2)
+				finally
+					call s:OverrideOption('VCSCommandSplit')
+				endtry
+				if resultBuffer < 0
+					echomsg 'Can''t open revision ' . a:1
+					return resultBuffer
+				endif
+				let b:VCSCommandCommand = 'vimdiff'
+				diffthis
+				let t:vcsCommandVimDiffScratchList += [resultBuffer]
+			else
+				" Add new buffer
+				call s:OverrideOption('VCSCommandEdit', 'split')
+				try
+					" Force splitting behavior, otherwise why use vimdiff?
+					call s:OverrideOption('VCSCommandSplit', orientation)
+					try
+						if(a:0 == 0)
+							let resultBuffer = s:VCSReview()
+						else
+							let resultBuffer = s:VCSReview(a:1)
+						endif
+					finally
+						call s:OverrideOption('VCSCommandSplit')
+					endtry
+				finally
+					call s:OverrideOption('VCSCommandEdit')
+				endtry
+				if resultBuffer < 0
+					echomsg 'Can''t open current revision'
+					return resultBuffer
+				endif
+				let b:VCSCommandCommand = 'vimdiff'
+				diffthis
+
+				if !exists('t:vcsCommandVimDiffSourceBuffer')
+					" New instance of vimdiff.
+					let t:vcsCommandVimDiffScratchList = [resultBuffer]
+
+					" This could have been invoked on a VCS result buffer, not the
+					" original buffer.
+					wincmd W
+					execute 'buffer' originalBuffer
+					" Store info for later original buffer restore
+					let t:vcsCommandVimDiffRestoreCmd =
+								\    'call setbufvar('.originalBuffer.', ''&diff'', '.getbufvar(originalBuffer, '&diff').')'
+								\ . '|call setbufvar('.originalBuffer.', ''&foldcolumn'', '.getbufvar(originalBuffer, '&foldcolumn').')'
+								\ . '|call setbufvar('.originalBuffer.', ''&foldenable'', '.getbufvar(originalBuffer, '&foldenable').')'
+								\ . '|call setbufvar('.originalBuffer.', ''&foldmethod'', '''.getbufvar(originalBuffer, '&foldmethod').''')'
+								\ . '|call setbufvar('.originalBuffer.', ''&foldlevel'', '''.getbufvar(originalBuffer, '&foldlevel').''')'
+								\ . '|call setbufvar('.originalBuffer.', ''&scrollbind'', '.getbufvar(originalBuffer, '&scrollbind').')'
+								\ . '|call setbufvar('.originalBuffer.', ''&wrap'', '.getbufvar(originalBuffer, '&wrap').')'
+								\ . '|if &foldmethod==''manual''|execute ''normal zE''|endif'
+					diffthis
+					wincmd w
+				else
+					" Adding a window to an existing vimdiff
+					let t:vcsCommandVimDiffScratchList += [resultBuffer]
+				endif
+			endif
+
+			let t:vcsCommandVimDiffSourceBuffer = originalBuffer
+
+			" Avoid executing the modeline in the current buffer after the autocommand.
+
+			let currentBuffer = bufnr('%')
+			let saveModeline = getbufvar(currentBuffer, '&modeline')
+			try
+				call setbufvar(currentBuffer, '&modeline', 0)
+				silent do VCSCommand User VCSVimDiffFinish
+			finally
+				call setbufvar(currentBuffer, '&modeline', saveModeline)
+			endtry
+			return resultBuffer
+		finally
+			let s:isEditFileRunning = s:isEditFileRunning - 1
+		endtry
+	catch
+		call s:ReportError(v:exception)
+		return -1
+	endtry
+endfunction
 " Section: Public functions {{{1
 
 " Function: VCSCommandGetVCSType() {{{2
@@ -1300,6 +1546,8 @@ com! -nargs=* VCSStatus call s:ExecuteVCSCommand('Status', [<f-args>])
 com! -nargs=* VCSUnlock call s:MarkOrigBufferForSetup(s:ExecuteVCSCommand('Unlock', [<f-args>]))
 com! -nargs=0 VCSUpdate call s:MarkOrigBufferForSetup(s:ExecuteVCSCommand('Update', []))
 com! -nargs=* VCSVimDiff call s:VCSVimDiff(<f-args>)
+com! -nargs=* VCSVimDiffGit call s:VCSVimDiffGit(<f-args>)
+com! -nargs=* VCSVimDiffCVS call s:VCSVimDiffCVS(<f-args>)
 
 " Section: VCS buffer management commands {{{2
 com! VCSCommandDisableBufferSetup call VCSCommandDisableBufferSetup()
@@ -1326,6 +1574,8 @@ nnoremap <silent> <Plug>VCSStatus :VCSStatus<CR>
 nnoremap <silent> <Plug>VCSUnlock :VCSUnlock<CR>
 nnoremap <silent> <Plug>VCSUpdate :VCSUpdate<CR>
 nnoremap <silent> <Plug>VCSVimDiff :VCSVimDiff<CR>
+nnoremap <silent> <Plug>VCSVimDiffGit :VCSVimDiffGit<CR>
+nnoremap <silent> <Plug>VCSVimDiffCVS :VCSVimDiffCVS<CR>
 
 " Section: Default mappings {{{1
 

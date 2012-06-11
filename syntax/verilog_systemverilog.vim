@@ -64,6 +64,7 @@ syn keyword verilogStatement   triggered
 syn keyword verilogStatement   std
 syn keyword verilogStatement   new
 
+syn keyword verilogStatement   begin end
 syn keyword verilogTypeDef     typedef enum
 
 syn keyword verilogConditional iff
@@ -73,8 +74,8 @@ syn keyword verilogRepeat      do while foreach
 
 syn keyword verilogLabel       join_any join_none forkjoin
 
-syn match   verilogGlobal      "`begin_\w\+"
-syn match   verilogGlobal      "`end_\w\+"
+"syn match   verilogBeginEnd    "`begin_\w\+"
+"syn match   verilogBeginEnd    "`end_\w\+"
 syn match   verilogGlobal      "`remove_\w\+"
 syn match   verilogGlobal      "`restore_\w\+"
 
@@ -136,7 +137,7 @@ syn match  verilogMethod       "\.peek\>"
 syn match  verilogMethod       "\.try_get\>"
 syn match  verilogMethod       "\.try_peek\>"
 syn match  verilogMethod       "\.try_put\>"
-syn match  verilogMethod       "\.data\>"
+"syn match  verilogMethod       "\.data\>"
 syn match  verilogMethod       "\.eq\>"
 syn match  verilogMethod       "\.neq\>"
 syn match  verilogMethod       "\.next\>"

@@ -1,0 +1,16 @@
+
+""
+"" Autocommands
+""
+
+au! BufWritePost ~/.vim* source ~/.vimrc
+au  BufRead,BufNewFile Makefile,*.py          set noexpandtab
+au  BufWrite *.py :call DeleteTrailingWS()
+
+au  BufRead  *.log     AnsiEsc
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
+

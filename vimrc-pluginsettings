@@ -1,0 +1,80 @@
+
+let g:miniBufExplMapWindowNavVim   =1
+let g:miniBufExplMapWindowNavArrows=1
+let g:miniBufExplMapCTabSwitchBufs =1
+let g:miniBufExplModSelTarget      =1
+let g:miniBufExplUseSingleClick    =1
+let g:miniBufExplorerMoreThanOne   =1
+let g:miniBufExplSplitBelow        =1
+let b:TypesFileRecurse             =1
+
+
+let g:NERDMenuMode                 =2
+
+let g:SrcExpl_refreshTime          =100
+let g:SrcExpl_searchLocalDef       =0
+let g:SrcExpl_gobackKey            =''
+let g:SrcExpl_jumpKey              =''
+let g:SrcExpl_winHeight            =8
+let g:SrcExpl_isUpdateTags         =0
+let g:NERDTreeShowBookmarks        =1
+let g:NERDTreeHijackNetrw          =1
+let g:NERDTreeMapPreview           =0
+let g:Tlist_Use_Left_Window        =1
+let g:Tlist_WinWidth               =24
+let g:Tlist_Sort_Type              ="order"
+let g:Tlist_Compact_Format         =1
+let g:Tlist_Exit_OnlyWindow        =1
+let g:Tlist_File_Fold_Auto_Close   =1
+let g:Tlist_Enable_Fold_Column     =1
+let g:Tlist_Show_One_File          =1
+let Tlist_Auto_Highlight_Tag       =0
+let Tlist_Highlight_Tag_On_BufEnter=0
+
+let g:acp_mappingDriven            =1
+let g:acp_enableAtStartup          =0
+
+
+let g:SrcExpl_winHeight = 8
+let g:SrcExpl_refreshTime = 500
+let g:SrcExpl_pluginList = [ "__Tag_List__", "_NERD_tree_", "NERD_tree_1","NERD_tree_*", "NERD*", "Source_Explorer", "-MiniBufExplorer-" ]
+let g:SrcExpl_searchLocalDef = 1
+let g:SrcExpl_isUpdateTags = 0
+let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
+let g:SrcExpl_updateTagsKey = "<F10>"
+
+"let loaded_taglist = 1
+let g:tlist_systemverilog_settings = 'systemverilog;c:class;t:task;p:program;e:type;f:function;d:define;m:module;I:inputs;O:outputs'
+let g:tlist_verilog_systemverilog_settings = 'systemverilog;c:class;t:task;p:program;e:type;f:function;d:define;m:module;P:port;I:inputs;O:outputs'
+
+let g:NERDTreeWinSize = 23
+let g:NERDTreeWinPos = "right"
+let g:NERDTreeAutoCenter = 0
+let g:NERDTreeHighlightCursorline = 1
+
+
+" NETRW Settings
+let g_netrw_mousemaps = 0
+let g_netrw_keepdir   = 0
+let g:netrw_liststyle = 3
+let g:netrw_timefmt = " %Y-%m-%d  %H:%M:%S"
+let g:netrw_preview=0
+let g:netrw_special_syntax = 0
+
+
+
+" let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_color_change_percent = 10
+
+let g:DirDiffExcludes  ="*.a,*.hg,CVS,.*.swp,.git*,*.o,*.vdb,*.daidir,csrc,.svn,*.so,*.P,*.d"
+let g:DirDiffWindowSize=20
+let g:DirDiffIgnoreCase=1
+let g:DirDiffAddArgs   ="-bw"
+
+let g:ctrlp_by_filename = 1
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_split_window = 1
+let g:ctrlp_user_command = "find %s -path '*/*.[oPa]' -prune -o  -path '*/CVS' -prune -o -path '*/.hg' -prune -o -path '*/.git' -prune -o -type f -print"
+let g:ctrlp_max_depth = 10

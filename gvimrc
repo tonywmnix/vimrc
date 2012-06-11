@@ -1,14 +1,16 @@
-highlight Cursorline guibg=#444444
+"set guifont=Secret\ Code\ 12
+"set guifont=White\ Rabbit\ 14
+"set guifont=Jack\ Input\ 12
+"set guifont=Larabiefont\ Bold\ 12
+"set guifont=MonospaceTypewriter\ 12
 
-set lines=50 columns=140
+""" Favorites """
+set guifont=Bitstream\ Vera\ Sans\ Mono\ 10
+"set guifont=Andale\ Mono\ Bold\ 12
+"set guifont=Secret\ Code\ Bold\ 12
 
-colorscheme koehler
-"" Autocommands
-au! BufWritePost ~/.vim* source ~/.vimrc
-au BufRead,BufNewFile Makefile,*.py          set noexpandtab
-" au GuiEnter * set lines=50 columns=140
-" au GuiEnter * set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
-au GuiEnter * colorscheme koehler
-au BufRead,BufNewFile *.c,*.cpp,*.h,*.sv,*.svh,*.vh :IndentGuidesEnable
 
-set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
+"set guifont=Droid\ Sans\ Mono\ 12
+
+set lines=50 columns=100
+
