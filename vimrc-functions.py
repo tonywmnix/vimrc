@@ -2,6 +2,7 @@
 
 import binascii
 import vim
+import re
 
 open_quickfix = False
 
@@ -61,3 +62,102 @@ def print_current_buffer():
 	print "(ro) current.range:  " + str(vim.current.range)
 
 
+## Commentify Code ##
+
+def comment_line_help(prefix,ln):
+	plen = len(prefix)
+	if ln == "":
+		return ln
+	elif ln == prefix:
+		return ""
+	elif re.match("^\s*\n", ln):
+		return ""
+	elif plen == 2 and re.match("^\s\s[^" + prefix + "]", ln):
+		return re.sub("^\s\s", prefix, ln)
+	elif plen == 1 and re.match("^\s[^" + prefix + "]", ln):
+		return re.sub("^\s", prefix, ln)
+	else:
+		return prefix + ln
+
+def uncomment_line_help(prefix,ln):
+	if   len(prefix) == 0:
+		return
+	elif len(prefix) == 1:
+		rep = " "
+	elif len(prefix) == 2:
+		rep = "  "
+
+	if ln == "\n":
+		return ln
+
+	if  not re.match("^\s*" + prefix, ln):
+		return ln
+	elif re.match("^\s+" + prefix + "\s", ln):
+		p = re.compile('(' + prefix + ')')
+		return p.sub(rep, ln)
+	elif re.match("^\s+" + prefix , ln):
+		p = re.compile('(' + prefix + ')')
+		return p.sub("", ln)
+	elif re.match("^" + prefix + "\s", ln):
+		p = re.compile('(' + prefix + ')')
+		return p.sub(rep, ln)
+	elif re.match("^" + prefix, ln):
+		p = re.compile('(' + prefix + ')')
+		return p.sub("", ln)
+	else:
+		return ln
+
+def get_prefix():
+	filetype = vim.eval("&filetype")
+	prefix = {}
+	prefix['python']  = '#'
+	prefix['perl']    = '#'
+	prefix['csh']     = '#'
+	prefix['tcl']     = '#'
+	prefix['verilog_systemverilog']     = '//'
+	prefix['c']     = '//'
+	prefix['cpp']     = '//'
+	prefix['vim']     = '"'
+	try:
+		return prefix[filetype]
+	except:
+		return ""
+
+def toggle_comment():
+	prefix = get_prefix()
+	rng = vim.current.range
+
+	if prefix == "":
+		print "WARNING: Need to set prefix for this filetype: " + vim.eval("&filetype")
+		return
+
+
+	if re.match("^\s*" + prefix, vim.current.buffer[rng.start]):
+		for i in range(rng.start,rng.end+1):
+			try:
+				vim.current.buffer[i] = uncomment_line_help(prefix, vim.current.buffer[i])
+			except:
+				print "Error on line " + str(i)
+	else:
+		for i in range(rng.start,rng.end+1):
+			try:
+				before = uncomment_line_help(prefix, vim.current.buffer[i])
+				vim.current.buffer[i] = comment_line_help(prefix, before)
+			except:
+				print "Error on line " + str(i)
+
+
+def Dumb_TabComplete():
+	c = vim.current.window.cursor
+	print str(c)
+
+
+
+
+def pytest():
+	rng = vim.current.range
+	for i in range(rng.start,rng.end+1):
+		try:
+			vim.command(vim.current.buffer[i])
+		except:
+			print "Cannot execute: " + vim.command(vim.current.buffer[i])

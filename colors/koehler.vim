@@ -1,75 +1,89 @@
 " local syntax file - set colors on a per-machine basis:
 " vim: tw=0 ts=4 sw=4
 " Vim color file
-" Maintainer:	Ron Aaron <ron@ronware.org>
-" Last Change:	2006 Dec 10
-
+" Maintainer:   Ron Aaron <ron@ronware.org>
+" Last Change:   2006 Dec 10
 hi clear
 set background=dark
 if exists("syntax_on")
   syntax reset
 endif
 let g:colors_name = "koehler"
-hi Normal		  guifg=white  guibg=black
-hi Scrollbar	  guifg=darkcyan guibg=cyan
-hi Menu			  guifg=black guibg=cyan
-hi SpecialKey	  term=bold       cterm=bold  ctermfg=darkred  guifg=#cc0000
-hi NonText		  term=bold       cterm=bold  ctermfg=darkred  gui=bold      guifg=#cc0000
-hi Directory	  term=bold       cterm=bold  ctermfg=brown  guifg=#cc8000
-hi ErrorMsg		  term=standout   cterm=bold  ctermfg=grey  ctermbg=red  guifg=White  guibg=Red
-hi Search		  term=reverse                ctermfg=white  ctermbg=red      guifg=white  guibg=Red
-hi MoreMsg		  term=bold       cterm=bold  ctermfg=darkgreen	gui=bold  guifg=SeaGreen
-hi ModeMsg		  term=bold       cterm=bold  gui=bold  guifg=White	guibg=Blue
-hi LineNr		  term=underline  cterm=bold  ctermfg=darkcyan	guifg=Yellow
-hi Question		  term=standout   cterm=bold  ctermfg=darkgreen	gui=bold  guifg=Green
-hi StatusLine	  term=bold,reverse  cterm=bold ctermfg=lightblue ctermbg=white gui=bold guifg=blue guibg=white
-hi StatusLineNC   term=reverse    ctermfg=white ctermbg=lightblue guifg=white guibg=blue
-hi Title		  term=bold       cterm=bold  ctermfg=darkmagenta  gui=bold	guifg=Magenta
-hi Visual		  term=reverse	  cterm=reverse  gui=reverse
-hi WarningMsg	  term=standout   cterm=bold  ctermfg=darkred guifg=Red
-hi Cursor		                           guifg=bg	guibg=Green
-hi Comment		  term=bold       cterm=bold ctermfg=cyan  guifg=#80a0ff guibg=#222222
-hi IfBlock		                                                          guibg=#222222
-hi Constant		  term=underline  cterm=bold ctermfg=magenta  guifg=#ffa0a0 
-hi Special		  term=bold       cterm=bold ctermfg=red  guifg=Orange
-hi Identifier	  term=underline  ctermfg=brown  guifg=#40ffff
-hi Statement	  term=bold       cterm=bold ctermfg=yellow	gui=bold  guifg=#ffff60
-hi Label    	  term=bold       cterm=bold ctermfg=yellow	gui=bold  guifg=#4080ff
-hi PreProc		  term=underline  ctermfg=darkmagenta   guifg=#ff80ff
-hi Type			  term=underline  cterm=bold      ctermfg=lightgreen  gui=bold  guifg=#60ff60
-hi Error		  term=reverse	ctermfg=darkcyan  ctermbg=black  guifg=Red	guibg=Black
-hi Todo			  term=standout  ctermfg=black	ctermbg=darkcyan  guifg=Blue  guibg=Yellow gui=underline
-hi Fixme		  term=standout  ctermfg=black	ctermbg=darkcyan  guifg=black  guibg=red    gui=underline 
-hi CursorLine	  term=underline  guibg=#555555 cterm=underline
-hi CursorColumn	  term=underline  guibg=#555555 cterm=underline
-hi MatchParen	  term=reverse  ctermfg=magenta guibg=magenta
-hi TabLine		  term=bold,reverse  cterm=bold ctermfg=lightblue ctermbg=white gui=bold guifg=blue guibg=white
-hi TabLineFill	  term=bold,reverse  cterm=bold ctermfg=lightblue ctermbg=white gui=bold guifg=blue guibg=white
-hi TabLineSel	  term=reverse	                ctermfg=white     ctermbg=lightblue      guifg=white guibg=blue
-hi link IncSearch		Visual
-hi link String			Constant
-hi link Character		Constant
-hi link Number			Constant
-hi link Boolean			Constant
-hi link Float			Number
-hi link Function		Identifier
-hi link Conditional		Statement
-hi link Repeat			Statement
-hi link Operator		Statement
-hi link Keyword			Statement
-hi link Exception		Statement
-hi link Include			PreProc
-hi link Define			PreProc
-hi link Macro			PreProc
-hi link PreCondit		PreProc
-hi link StorageClass	Type
-hi link Structure		Type
-hi link Typedef			Type
-hi link Tag				Special
-hi link SpecialChar		Special
-hi link Delimiter		Special
-hi link SpecialComment	Special
-hi link Debug			Special
+
+hi Normal         ctermfg=white ctermbg=black            guifg=white         guibg=#333333
+hi Visual         term=none                                                  guibg=#444444
+
+hi Search          term=none  cterm=reverse    ctermfg=yellow  ctermbg=NONE  gui=undercurl,bold  guifg=NONE guibg=#555555 guisp=blue
+hi IncSearch       term=none  cterm=underline  ctermfg=red   ctermbg=yellow  gui=undercurl,bold  guifg=NONE guibg=blue
+"guibg=
+                
+hi Cursor                          gui=none              guifg=bg guibg=fg
+hi CursorLine       ctermbg=NONE cterm=none              gui=italic  guibg=NONE
+hi CursorColumn     ctermbg=NONE             cterm=none  gui=italic  guibg=NONE
+
+hi Scrollbar                                             guifg=darkcyan      guibg=darkgray
+hi Menu                                                  guifg=black         guibg=#203040
+hi SpecialKey      term=none gui=none                    guifg=#111111       guibg=NONE
+hi NonText         term=bold              gui=bold       guifg=#cc0000       guibg=bg
+hi Directory       term=bold                             guifg=#cc8000       guibg=bg
+hi ErrorMsg        term=standout                         guifg=White         guibg=Red
+hi MoreMsg         term=bold              gui=bold       guifg=SeaGreen      guibg=bg
+hi ModeMsg         term=bold              gui=bold       guifg=White         guibg=Blue
+hi LineNr                            ctermfg=darkgray    guifg=#444444       
+hi Question        term=standout          gui=bold       guifg=Green         guibg=bg
+hi StatusLine      gui=italic guifg=#262626 guibg=fg
+hi StatusLineNC    guifg=#262626 guibg=#080808
+hi Title           term=bold              gui=bold       guifg=Magenta       guibg=bg
+hi WarningMsg      term=standout          gui=NONE       guifg=Red           guibg=bg
+hi Comment         term=bold              gui=italic     guifg=lightblue2    guibg=bg
+hi Constant        term=underline                        guifg=#ffa0a0       guibg=bg
+hi Special         term=bold                             guifg=Orange        guibg=bg
+hi Identifier      term=underline                        guifg=#40ffff       guibg=bg
+hi IfBlock                                                                   guibg=#222222
+hi Statement       term=bold              gui=bold       guifg=#ffff60       guibg=bg
+hi Conditional     term=bold              gui=bold       guifg=#ffff20       guibg=bg
+hi Label           term=bold              gui=bold       guifg=#4080ff       guibg=bg
+hi PreProc         term=underline                        guifg=#ff80ff       guibg=bg
+hi Type            term=underline         gui=bold       guifg=#60ff60       guibg=bg
+hi Error           term=reverse           gui=reverse    guifg=Red           guibg=Black
+hi Todo            term=standout          gui=underline  guifg=Blue          guibg=Yellow 
+hi Fixme           term=standout          gui=underline  guifg=black         guibg=red    
+hi MatchParen      term=bold         gui=bold,underline                           guibg=#666666 
+" ( )
+hi TabLine         term=bold,reverse      gui=bold       guifg=blue          guibg=white
+hi TabLineFill     term=bold,reverse      gui=bold       guifg=blue          guibg=white
+hi TabLineSel      term=reverse                          guifg=white         guibg=blue
+
+
+hi PMenu           term=NONE              gui=none       guifg=gray         guibg=#203040    
+hi PMenuSel        term=bold              gui=bold       guifg=yellow    guibg=#333333   
+hi PMenuSbar       term=bold              gui=bold                           guibg=#203040
+hi PMenuThumb      term=bold              gui=bold                           guibg=#999999
+
+hi link String         Constant
+hi link Character      Constant
+hi link Number         Constant
+hi link Boolean        Constant
+hi link Float          Number
+hi link Function       Identifier
+hi link Conditional    Statement
+hi link Repeat         Statement
+hi link Operator       Statement
+hi link Keyword        Statement
+hi link Exception      Statement
+hi link Include        PreProc
+hi link Define         PreProc
+hi link Macro          PreProc
+hi link PreCondit      PreProc
+hi link StorageClass   Type
+hi link Structure      Type
+hi link Typedef        Type
+hi link Tag            Special
+hi link SpecialChar    Special
+hi link Delimiter      Special
+hi link SpecialComment Special
+
+hi link Debug          Special
 
 
 hi DiffAdd     gui=NONE guibg=#222222
@@ -79,5 +93,7 @@ hi DiffText    gui=NONE guibg=#444444
 " hi DiffText    gui=bold guibg=black guifg=magenta
 hi DiffDelete  gui=NONE guibg=black guifg=#444444
 
-hi Folded      term=standout ctermfg=11 ctermbg=8 gui=NONE guibg=#222222 guifg=cyan
-hi FoldColumn  term=standout ctermfg=11 ctermbg=8 gui=NONE guifg=Cyan guibg=black
+hi Folded      term=standout   gui=NONE guibg=#222222 guifg=cyan
+hi FoldColumn  term=standout  ctermbg=black gui=NONE guifg=Cyan guibg=black
+
+" vim:syntax=mycolortest

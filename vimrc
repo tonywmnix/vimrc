@@ -38,10 +38,10 @@ set nowrap
 set ru
 set display=uhex
 set cmdheight=2
-set novisualbell
+"set visualbell
 set history=800
 set diffopt=vertical,filler,context:1
-set vb t_vb=.
+"set vb t_vb=.
 " set autoread
 set nolazyredraw
 set magic
@@ -78,7 +78,7 @@ endif
 "map <down> <nop>
 "map <left> <nop>
 "map <right> <nop>
-
+ 
 source  ~/.vim/vimrc-functions
 source  ~/.vim/vimrc-keys
 source  ~/.vim/vimrc-autocmd
@@ -86,16 +86,57 @@ source  ~/.vim/vimrc-pluginsettings
 source  ~/.vim/vimrc-highlight
 
 if  has("gui_running")
+let g:Powerline_symbols="unicode"
 else
-imap A <ESC>ki
-imap B <ESC>ji
-imap C <ESC>li
+"imap A <ESC>ki
+"imap B <ESC>ji
+"imap C <ESC>li
 imap D <ESC>hi
 set nocompatible
 " This fixes '.' being inserted when using arrow keys 
 set term=xterm
+set t_kb=
 endif
 
 set tabpagemax=50
 set autowrite
+set guitablabel=%t
+
+set t_Co=256
+set t_vb=
+
+set cursorline
+set cursorcolumn
+
+set completeopt=menu,menuone,preview
+
+
+set synmaxcol=502
+
+augroup cline
+    au!
+    au WinLeave * set nocursorcolumn
+    au WinEnter * set cursorcolumn
+    au WinLeave * set nocursorline
+    au WinEnter * set cursorline
+augroup END
+
+set undofile
+set undoreload=10000
+set undodir=~/.vim/undo//
+
+au VimResized * :wincmd =
+
+nnoremap * *<c-o>
+
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Space to toggle folds
+nnoremap <Space> za
+vnoremap <Space> az
+
+let g:Powerline_stl_path_style="short"
+let g:Powerline_colorscheme="skwp"
+
 

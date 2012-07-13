@@ -56,11 +56,15 @@ endif
 let &cpo = s:cpo_save
 unlet s:cpo_save
 
+setlocal expandtab
+
 setlocal efm=
 "setlocal efm =%EError-[SE]\ %m,%C%>\ \ F%.%#,%C\ \ \"%f\"\\,\ %l%.%#,%C%.%#,%Z%p^
-setlocal efm+=%EError-%m,%C%>\ \ F%.%#,%Z\ \ \"%f\"\\,\ %l%.%#
+"setlocal efm+=%EError-[UPIMI-E] %m,%C%>\ \ F%.%#,%Z\ \ \"%f\"\\,\ %l%.%#
+setlocal efm+=%EError-%m,%C%>\ \ Port\ %m,%C%>\ \ F%.%#,%Z\ \ \"%f\"\\,\ %l%.%#
 setlocal efm+=%ALint-%m,%C%f\\,\ %l,%Z\"%.%#
 setlocal efm+=%ALint-[PCWM-L]\ %m,%Z%f\\,\ %l
 setlocal efm+=%WWarning-[LCA%.%#,%Z%.%#
 setlocal efm+=%WWarning%.%#,%Z%f\\,\ %l\%.%#
 setlocal efm+=%C%>\ \ %.%#
+setlocal efm+=

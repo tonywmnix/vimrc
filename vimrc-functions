@@ -98,3 +98,25 @@ func! SortTabs()
     endfor 
   endfor 
 endfun 
+
+function! Dumb_TabComplete()
+  if (pumvisible())
+      if(g:mymode == 0)
+          let g:mymode = 1
+        return "\<C-X>\<C-F>"
+    endif
+      if(g:mymode == 1)
+          let g:mymode = 2
+        return "\<C-P>"
+    endif
+    endif
+  let line = getline('.')                         " curline
+  let substr = strpart(line, col('.')-2, 1)      " from start to cursor
+  let substr = matchstr(substr, "[\.\/a-z_0-9]")       " word till cursor
+  if (strlen(substr)==0)                          " nothing to match on empty string
+  let g:mymode = 0
+    return "\<tab>"
+  endif
+  let g:mymode = 0
+  return "\<C-P>"                         " existing text matchingi
+endfunction

@@ -2,6 +2,7 @@
 ""
 "" Key Mappings
 ""
+map - :py toggle_comment()<CR>
 nnoremap       <C-L> :nohl<CR><C-L>
 nmap <silent> <F1> :call HLMarks("Marks")<CR>
 nmap <silent> <F2> :call clearmatches()<CR>
@@ -12,6 +13,7 @@ map <F4>       <ESC>:tab sball<CR>:call SortTabs()<CR>
 map <S-F5>     <ESC>:cp<CR>
 map <S-F6>     <ESC>:cn<CR>
 map <F5>       <ESC>:e<CR>
+map <F7>       <ESC>:TagbarToggle<CR>
 "map <F6>       <ESC>:NERDTreeToggle<CR>
 "map <F7>       <ESC>:SrcExplToggle<CR>
 "map <F12>      <ESC>:TrinityToggleAll<CR>
@@ -28,17 +30,14 @@ map <S-Down>   <ESC>:bprevious<CR>
 map <C-t>      <ESC>:tabnew<CR>
 map <C-f>      <ESC><C-W>T
 
+"map <C-[>      <ESC>:pop<CR>
+
+nmap <leader>x   :py pytest()<CR>
+vmap <leader>x   :py pytest()<CR>
+
 " map <C-a>      <ESC><C-w>w
 map <leader>cd :cd %:p:h<cr>
 
-
+inoremap <tab> <c-r>=Dumb_TabComplete()<CR>
 " inoremap <expr> <Tab>       pumvisible() ? "\<Down>" : "\<Tab>"
-if !g:acp_enableAtStartup
-inoremap <tab> <c-r>=Smart_TabComplete()<CR>
-inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-endif
+
