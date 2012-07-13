@@ -1,22 +1,22 @@
 
-hi StatusBar  term=bold gui=reverse,bold guibg=#000000 guifg=cyan
+"hi StatusBar  term=bold gui=reverse,bold guibg=#000000 guifg=cyan
 
-highlight StatusLineModified           term=bold, cterm=bold, ctermfg=Red      gui=bold, guibg=Red guifg=white
-highlight StatusLineModifiedNC                                ctermfg=Red                guibg=Red 
-highlight StatusLinePreview            term=bold, cterm=bold, ctermfg=Blue     gui=bold, guibg=Blue  
-highlight StatusLinePreviewNC                                 ctermfg=Blue               guibg=Blue 
-highlight StatusLineReadonly           term=bold, cterm=bold, ctermfg=Grey     gui=bold, guibg=DarkGrey 
-highlight StatusLineReadonlyNC                                ctermfg=Grey               guibg=DarkGrey 
-highlight StatusLineSpecial            term=bold, cterm=bold, ctermfg=DarkBlue gui=bold, guibg=DarkBlue 
-highlight StatusLineSpecialNC                                 ctermfg=DarkBlue           guibg=DarkBlue 
-highlight StatusLineUnmodifiable       term=bold, cterm=bold, ctermfg=Grey     gui=bold, guibg=Grey 
-highlight StatusLineUnmodifiableNC                            ctermfg=Grey               guibg=Grey
+"highlight StatusLineModified           term=bold, cterm=bold, ctermfg=Red      gui=bold, guibg=Red guifg=white
+"highlight StatusLineModifiedNC                                ctermfg=Red                guibg=Red 
+"highlight StatusLinePreview            term=bold, cterm=bold, ctermfg=Blue     gui=bold, guibg=Blue  
+"highlight StatusLinePreviewNC                                 ctermfg=Blue               guibg=Blue 
+"highlight StatusLineReadonly           term=bold, cterm=bold, ctermfg=Grey     gui=bold, guibg=DarkGrey 
+"highlight StatusLineReadonlyNC                                ctermfg=Grey               guibg=DarkGrey 
+"highlight StatusLineSpecial            term=bold, cterm=bold, ctermfg=DarkBlue gui=bold, guibg=DarkBlue 
+"highlight StatusLineSpecialNC                                 ctermfg=DarkBlue           guibg=DarkBlue 
+"highlight StatusLineUnmodifiable       term=bold, cterm=bold, ctermfg=Grey     gui=bold, guibg=Grey 
+"highlight StatusLineUnmodifiableNC                            ctermfg=Grey               guibg=Grey
 
-hi Marks term=reverse ctermfg=0 ctermbg=4 guibg=Grey40
+"hi Marks term=reverse ctermfg=0 ctermbg=4 guibg=Grey40
 " hi Search   term=reverse ctermfg=15 ctermbg=12 guifg=black guibg=yellow
 
-hi PmenuSel  ctermbg=8               guibg=yellow    guifg=black
-hi Pmenu     ctermfg=13  ctermbg=3   guibg=DarkGrey
+"hi PmenuSel  ctermbg=8               guibg=yellow    guifg=black
+"hi Pmenu     ctermfg=13  ctermbg=3   guibg=DarkGrey
 
-highlight Cursorline guibg=#444444
-hi Marks term=reverse ctermfg=0 ctermbg=4 guibg=Grey40
+"highlight Cursorline guibg=#444444
+"hi Marks term=reverse ctermfg=0 ctermbg=4 guibg=Grey40

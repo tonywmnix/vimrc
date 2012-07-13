@@ -1,5 +1,4 @@
-" local syntax file - set colors on a per-machine basis:
-" vim: tw=0 ts=4 sw=4
+" vim: tw=0 ts=4 sw=4 syntax=mycolortest
 " Vim color file
 " Maintainer:   Ron Aaron <ron@ronware.org>
 " Last Change:   2006 Dec 10
@@ -11,15 +10,15 @@ endif
 let g:colors_name = "koehler"
 
 hi Normal         ctermfg=white ctermbg=black            guifg=white         guibg=#333333
-hi Visual         term=none                                                  guibg=#444444
+hi Visual         term=none                                                  guibg=#666666
 
-hi Search          term=none  cterm=reverse    ctermfg=yellow  ctermbg=NONE  gui=undercurl,bold  guifg=NONE guibg=#555555 guisp=blue
-hi IncSearch       term=none  cterm=underline  ctermfg=red   ctermbg=yellow  gui=undercurl,bold  guifg=NONE guibg=blue
-"guibg=
+hi Search          term=none  cterm=underline  ctermfg=yellow  ctermbg=NONE  gui=undercurl,bold  guifg=NONE guibg=blue    guisp=red 
+hi IncSearch       term=none  cterm=underline  ctermfg=red   ctermbg=yellow  gui=undercurl,bold  guifg=NONE guibg=red     guisp=blue
+
                 
 hi Cursor                          gui=none              guifg=bg guibg=fg
-hi CursorLine       ctermbg=NONE cterm=none              gui=italic  guibg=NONE
-hi CursorColumn     ctermbg=NONE             cterm=none  gui=italic  guibg=NONE
+hi CursorLine       ctermbg=NONE cterm=none              gui=none    guibg=#222222
+hi CursorColumn     ctermbg=NONE             cterm=none  gui=none    guibg=#222222
 
 hi Scrollbar                                             guifg=darkcyan      guibg=darkgray
 hi Menu                                                  guifg=black         guibg=#203040
@@ -96,4 +95,5 @@ hi DiffDelete  gui=NONE guibg=black guifg=#444444
 hi Folded      term=standout   gui=NONE guibg=#222222 guifg=cyan
 hi FoldColumn  term=standout  ctermbg=black gui=NONE guifg=Cyan guibg=black
 
-" vim:syntax=mycolortest
+
+
