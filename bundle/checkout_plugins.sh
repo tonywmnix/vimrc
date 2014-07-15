@@ -19,3 +19,4 @@ git clone https://github.com/tpope/vim-surround.git
 git clone https://github.com/vim-voom/VOoM.git
 #svn checkout http://conque.googlecode.com/svn/trunk conque-read-only
 git clone https://github.com/oplatek/Conque-Shell.git
+cp -rfv _overrides/* .

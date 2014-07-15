@@ -1,6 +1,5 @@
 execute pathogen#infect()
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-filetype off
 syntax on
 filetype plugin indent on
 
@@ -9,11 +8,6 @@ if &t_Co >= 256 || has("gui_running")
 else
     colorscheme koehler
 endif
-
-"if &t_Co > 2 || has("gui_running")
-   " switch syntax highlighting on, when the terminal has colors
-"   syntax on
-"endif
 
 nnoremap ; :
 set list
@@ -90,7 +84,6 @@ source  ~/.vim/vimrc-pluginsettings
 source  ~/.vim/vimrc-highlight
 
 if  has("gui_running")
-let g:Powerline_symbols="unicode"
 else
 "imap A <ESC>ki
 "imap B <ESC>ji
@@ -140,8 +133,4 @@ nnoremap N Nzzzv
 nnoremap <Space> za
 vnoremap <Space> az
 
-"let g:Powerline_stl_path_style="short"
-"let g:Powerline_colorscheme="skwp"
-
-
-execute pathogen#infect()
+command! E Explore
