@@ -21,6 +21,9 @@ git clone https://github.com/tpope/vim-rails.git
 git clone https://github.com/vim-voom/VOoM.git
 git clone https://github.com/scrooloose/nerdtree.git
 git clone https://github.com/oplatek/Conque-Shell.git
+git clone https://github.com/ervandew/supertab.git
+git clone https://github.com/Rip-Rip/clang_complete.git
+git clone https://github.com/yegappan/mru.git
 cp -rfv _overrides/* .
 
 
