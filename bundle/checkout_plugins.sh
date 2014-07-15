@@ -17,5 +17,5 @@ git clone https://github.com/tpope/vim-pathogen.git
 git clone https://github.com/tpope/vim-sensible.git
 git clone https://github.com/tpope/vim-surround.git
 git clone https://github.com/vim-voom/VOoM.git
-svn checkout http://conque.googlecode.com/svn/trunk conque-read-only
-
+#svn checkout http://conque.googlecode.com/svn/trunk conque-read-only
+git clone https://github.com/oplatek/Conque-Shell.git
