@@ -1,3 +1,7 @@
+execute pathogen#infect()
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+filetype off
+syntax on
 filetype plugin indent on
 
 if &t_Co >= 256 || has("gui_running")
@@ -6,10 +10,10 @@ else
     colorscheme koehler
 endif
 
-if &t_Co > 2 || has("gui_running")
+"if &t_Co > 2 || has("gui_running")
    " switch syntax highlighting on, when the terminal has colors
-   syntax on
-endif
+"   syntax on
+"endif
 
 nnoremap ; :
 set list
@@ -57,7 +61,7 @@ set foldmethod=marker
 set foldcolumn=4
 
 "set statusline=%m%r%h\ [%ll/%LL:%cc]\ [ASCII\ %3b\ 0x%02B]\ %=\ [b%n]\ [%P]\ %w[%f]
-set statusline=%m%r%h\ [l%l/%L:c%c]\ %=\ [b%n]\ [%P]\ %w[%f]
+"set statusline=%m%r%h\ [l%l/%L:c%c]\ %=\ [b%n]\ [%P]\ %w[%f]
 
 " let &efm .=',%EError%*[^\n],%C  %[A-Z]%*[^\n],%+C  [%f]\,,%+Z  %l: %m,%EError%*[^\n],%C  %[A-Z]%*[^\n],%+C  "%f"\,,%+Z  %l: %m,%-WWarning-[SIOB] %m,%-Z%f\, %l'
 " let &efm .=',%EError%*[^\n],%C  %[A-Z]%*[^\n],%+C  [%f]\,,%+Z  %l: %m,%EError%*[^\n],%C  %[A-Z]%*[^\n],%+C  "%f"\,,%+Z  %l: %m'
@@ -136,7 +140,8 @@ nnoremap N Nzzzv
 nnoremap <Space> za
 vnoremap <Space> az
 
-let g:Powerline_stl_path_style="short"
-let g:Powerline_colorscheme="skwp"
+"let g:Powerline_stl_path_style="short"
+"let g:Powerline_colorscheme="skwp"
 
 
+execute pathogen#infect()

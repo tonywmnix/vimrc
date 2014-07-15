@@ -19,7 +19,7 @@
 "set guifont=monofur\ 15
 "set guifont=Inconsolata\ 14
 "set guifont=Monaco\ 12
-set guifont=Consolas\ 12.5
+"set guifont=Consolas\ 12.5
 
 set lines=55 columns=100
 set guioptions-=m
