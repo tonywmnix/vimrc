@@ -16,7 +16,12 @@ git clone https://github.com/thinca/vim-localrc.git
 git clone https://github.com/tpope/vim-pathogen.git
 git clone https://github.com/tpope/vim-sensible.git
 git clone https://github.com/tpope/vim-surround.git
+git clone https://github.com/tpope/vim-dispatch.git
+git clone https://github.com/tpope/vim-rails.git
 git clone https://github.com/vim-voom/VOoM.git
-#svn checkout http://conque.googlecode.com/svn/trunk conque-read-only
+git clone https://github.com/scrooloose/nerdtree.git
 git clone https://github.com/oplatek/Conque-Shell.git
 cp -rfv _overrides/* .
+
+
+#svn checkout http://conque.googlecode.com/svn/trunk conque-read-only
