@@ -1,4 +1,9 @@
 #!/bin/bash
+rm -fv ~/.vimrc ~/.gvimrc
+ln -sv ~/.vim/vimrc ~/.vimrc
+ln -sv ~/.vim/gvimrc ~/.gvimrc
+
+cd bundle
 git clone https://github.com/mileszs/ack.vim.git
 git clone https://github.com/vim-scripts/Align.git
 git clone https://github.com/wincent/Command-T.git
