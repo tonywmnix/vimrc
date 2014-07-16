@@ -13,6 +13,7 @@ git clone https://github.com/editorconfig/editorconfig-vim.git
 git clone https://github.com/vim-scripts/L9.git
 git clone https://github.com/tmhedberg/matchit.git
 git clone https://github.com/Lokaltog/powerline.git
+git clone https://github.com/Lokaltog/powerline-fonts.git
 git clone https://github.com/kien/rainbow_parentheses.vim.git
 git clone https://github.com/kien/tabman.vim.git
 git clone https://github.com/vim-scripts/vcscommand.vim.git
@@ -30,6 +31,9 @@ git clone https://github.com/ervandew/supertab.git
 git clone https://github.com/Rip-Rip/clang_complete.git
 git clone https://github.com/yegappan/mru.git
 git clone https://github.com/chrisbra/csv.vim.git
+git clone https://github.com/bbchung/clighter.git
+git clone https://github.com/justinmk/vim-sneak.git
+
 cp -rfv _overrides/* .
 
 

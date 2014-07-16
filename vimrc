@@ -135,3 +135,5 @@ nnoremap <Space> za
 vnoremap <Space> az
 
 command! E Explore
+
+let g:clighter_libclang_file = '/usr/local/lib64/libclang.so'
