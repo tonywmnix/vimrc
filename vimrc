@@ -1,4 +1,5 @@
 execute pathogen#infect()
+Helptags
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 syntax on
 filetype plugin indent on
@@ -44,7 +45,7 @@ set diffopt=vertical,filler,context:1
 set nolazyredraw
 set magic
 set showmatch
-set guioptions=acegimrLbhpT "aegimrlt
+set guioptions=acegirLbhp "aegimrlt
 set nobackup
 set nowb
 set noswapfile
