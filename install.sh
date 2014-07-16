@@ -29,6 +29,7 @@ git clone https://github.com/oplatek/Conque-Shell.git
 git clone https://github.com/ervandew/supertab.git
 git clone https://github.com/Rip-Rip/clang_complete.git
 git clone https://github.com/yegappan/mru.git
+git clone https://github.com/chrisbra/csv.vim.git
 cp -rfv _overrides/* .
 
 
