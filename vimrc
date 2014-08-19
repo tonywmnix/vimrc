@@ -123,7 +123,7 @@ set undofile
 set undoreload=10000
 set undodir=~/.vim/undo//
 
-au VimResized * :wincmd =
+"au VimResized * :wincmd =
 
 nnoremap * *<c-o>
 
@@ -136,4 +136,4 @@ vnoremap <Space> az
 
 command! E Explore
 
-let g:clighter_libclang_file = '/usr/local/lib64/libclang.so'
+let g:clang_library_path = '/home/tony/root/lib/'
